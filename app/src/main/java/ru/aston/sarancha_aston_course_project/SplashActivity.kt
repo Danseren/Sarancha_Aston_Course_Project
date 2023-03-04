@@ -7,13 +7,13 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import ru.aston.sarancha_aston_course_project.databinding.ActivitySplashScreenBinding
+import ru.aston.sarancha_aston_course_project.utils.SPLASH_DELAY
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
     private val handler = Handler(Looper.getMainLooper())
-    private val delay = 3000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
         handler.postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, delay)
+        }, SPLASH_DELAY)
     }
 
     override fun onDestroy() {
