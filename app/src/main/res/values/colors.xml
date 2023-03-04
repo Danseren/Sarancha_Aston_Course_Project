@@ -7,4 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="rick_and_morty">#16acc9</color>
+    <color name="rick_and_morty_green">#d2da4b</color>
 </resources>
