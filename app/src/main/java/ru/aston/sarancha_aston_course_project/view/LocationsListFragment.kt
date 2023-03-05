@@ -7,45 +7,34 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
-import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
-import ru.aston.sarancha_aston_course_project.model.dto.Result
+import ru.aston.sarancha_aston_course_project.databinding.FragmentLocationsListBinding
 
-class CharacterListFragment : Fragment(), HasCustomTitle {
 
-    private var _binding: FragmentCharactersListBinding? = null
+class LocationsListFragment : Fragment(), HasCustomTitle {
+
+    private var _binding: FragmentLocationsListBinding? = null
     private val binding get() = _binding!!
 
 
     companion object {
-        fun newInstance() = CharacterListFragment()
+        fun newInstance() = LocationsListFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharactersListBinding.inflate(inflater)
+        _binding = FragmentLocationsListBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val characters = arrayListOf(
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-        )
 
-        val adapter = RecyclerCharactersAdapter(characters)
-        binding.recyclerCharactersContainer.adapter = adapter
     }
 
-    override fun getTitleRes(): Int = R.string.titleCharacters
+    override fun getTitleRes(): Int = R.string.titleLocations
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,17 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/itemMain"
+        android:id="@+id/itemCharacters"
         android:enabled="true"
         android:icon="@drawable/ic_character_64"
-        android:title="Characters"/>
+        android:title="@string/itemCharacters"/>
     <item
-        android:id="@+id/itemVacancies"
+        android:id="@+id/itemLocations"
         android:enabled="true"
         android:icon="@drawable/ic_location_64"
-        android:title="Locations"/>
+        android:title="@string/itemLocations"/>
     <item
-        android:id="@+id/itemOffices"
+        android:id="@+id/itemEpisodes"
         android:enabled="true"
         android:icon="@drawable/ic_episod_64"
-        android:title="Episodes"/>
+        android:title="@string/itemEpisodes"/>
 </menu>
