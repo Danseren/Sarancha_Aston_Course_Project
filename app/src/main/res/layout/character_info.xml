@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/radius"
+        app:cardElevation="@dimen/elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/paddingMedium">
+
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginMedium"
+                android:contentDescription="contentDescription"
+                android:src="@drawable/ic_anonymous_128"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalStart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineVerticalStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <TextView
+                android:id="@+id/tvCharacterName"
+                style="@style/TitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:layout_marginTop="@dimen/marginMedium"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvCharacterName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineVerticalStart"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCharacterStatus"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvCharacterStatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guidelineVerticalStart"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterName" />
+
+            <TextView
+                android:id="@+id/tvSpeciesTitle"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvSpeciesTitle"
+                app:layout_constraintStart_toEndOf="@+id/guidelineVerticalStart"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterStatus" />
+
+            <TextView
+                android:id="@+id/tvSpecies"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvSpecies"
+                app:layout_constraintStart_toEndOf="@+id/tvSpeciesTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacterStatus" />
+
+            <TextView
+                android:id="@+id/tvGenderTitle"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvGenderTitle"
+                app:layout_constraintStart_toEndOf="@+id/guidelineVerticalStart"
+                app:layout_constraintTop_toBottomOf="@id/tvSpeciesTitle" />
+
+            <TextView
+                android:id="@+id/tvGender"
+                style="@style/SmallTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginExtraLarge"
+                android:contentDescription="contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/tvGender"
+                app:layout_constraintStart_toEndOf="@+id/tvGenderTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvSpeciesTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</merge>
