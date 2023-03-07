@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
-import ru.aston.sarancha_aston_course_project.model.dto.Result
+import ru.aston.sarancha_aston_course_project.viewmodel.AppState
+import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
 class CharacterListFragment : Fragment(), HasCustomTitle {
 
@@ -19,6 +22,8 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
     companion object {
         fun newInstance() = CharacterListFragment()
     }
+
+    lateinit var viewModel: CharacterListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +36,29 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val characters = arrayListOf(
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-            Result(),
-        )
+        viewModel = ViewModelProvider(this).get(CharacterListViewModel::class.java)
+        viewModel.getLiveData()
+            .observe(viewLifecycleOwner, object : Observer<AppState> {
+                override fun onChanged(t: AppState) {
+                    renderData(t)
+                }
+            })
+        viewModel.sentRequest()
+    }
 
-        val adapter = RecyclerCharactersAdapter(characters)
-        binding.recyclerCharactersContainer.adapter = adapter
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Loading -> {
+
+            }
+            is AppState.Error -> {
+
+            }
+            is AppState.Success -> {
+                binding.recyclerCharactersContainer.adapter =
+                    RecyclerCharactersAdapter(appState.character)
+            }
+        }
     }
 
     override fun getTitleRes(): Int = R.string.titleCharacters

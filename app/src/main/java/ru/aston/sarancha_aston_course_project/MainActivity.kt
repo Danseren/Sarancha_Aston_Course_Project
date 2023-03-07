@@ -154,4 +154,9 @@ class MainActivity : AppCompatActivity(), Navigator {
         onBackPressed()
         return true
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentListener)
+    }
 }

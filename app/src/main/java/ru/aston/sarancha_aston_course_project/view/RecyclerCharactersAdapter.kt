@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.aston.sarancha_aston_course_project.databinding.RecyclerCharactersBinding
-import ru.aston.sarancha_aston_course_project.model.dto.Result
+import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
+import ru.aston.sarancha_aston_course_project.domain.Character
+import ru.aston.sarancha_aston_course_project.utils.STATUS_ALIVE
+import ru.aston.sarancha_aston_course_project.utils.STATUS_DEAD
 
-class RecyclerCharactersAdapter(private val listData: List<Result>) :
+//class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
+class RecyclerCharactersAdapter(private val listData: List<Character>) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
-    var clickAction: ((Result) -> Unit)? = null
+    var clickAction: ((CharacterInfo) -> Unit)? = null
     var itemPos: Int = 1
-
-//    override fun getItemViewType(position: Int): Int {
-//        return listData[position].type
-//    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,17 +24,6 @@ class RecyclerCharactersAdapter(private val listData: List<Result>) :
 
         val binding = RecyclerCharactersBinding.inflate(LayoutInflater.from(parent.context))
         return CharactersViewHolder(binding)
-//        return when (viewType) {
-//            MOTHERLAND -> {
-//                val binding =
-//                    RecyclerAbroadCountryBinding.inflate(LayoutInflater.from(parent.context))
-//                AbroadCountryViewHolder(binding)
-//            }
-//            else -> {
-//                val binding = RecyclerItemBinding.inflate(LayoutInflater.from(parent.context))
-//                CharactersViewHolder(binding)
-//            }
-//        }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
@@ -45,12 +34,12 @@ class RecyclerCharactersAdapter(private val listData: List<Result>) :
                     custom.apply {
                         setCharacterName(listData[position].name)
                         setCharacterStatus(listData[position].status)
-//                        setImageSrc(listData[position].image)
+                        setImageSrc(listData[position].imgUrl)
                         setCharacterSpecies(listData[position].species)
                         setCharacterGender(listData[position].gender)
                         when (listData[position].status) {
-                            "Alive" -> setCharacterStatusColor(Color.GREEN)
-                            "Dead" -> setCharacterStatusColor(Color.RED)
+                            STATUS_ALIVE -> setCharacterStatusColor(Color.GREEN)
+                            STATUS_DEAD -> setCharacterStatusColor(Color.RED)
                             else -> setCharacterStatusColor(Color.GRAY)
                         }
 
@@ -59,7 +48,6 @@ class RecyclerCharactersAdapter(private val listData: List<Result>) :
 //                            clickAction?.invoke(listData[position])
 //                        }
                     }
-
                 }
             }
         }

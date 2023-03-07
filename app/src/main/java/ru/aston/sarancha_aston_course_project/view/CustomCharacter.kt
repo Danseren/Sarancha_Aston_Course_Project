@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.databinding.CharacterInfoBinding
+import ru.aston.sarancha_aston_course_project.utils.loadImageFromUrl
 
 class CustomCharacter(
     context: Context,
@@ -39,8 +40,10 @@ class CustomCharacter(
         val typedArray =
             context.obtainStyledAttributes(attrs, R.styleable.CustomCharacterView, defStyleAttr, defStyleRes)
 
-        val imageSrc = typedArray.getInteger(R.styleable.CustomCharacterView_imageSrc, R.drawable.ic_anonymous_128)
-        setImageSrc(imageSrc)
+        val imageSrc = typedArray.getString(R.styleable.CustomCharacterView_imageSrc)
+        if (imageSrc != null) {
+            setImageSrc(imageSrc)
+        }
 
         val characterName = typedArray.getString(R.styleable.CustomCharacterView_characterName)
         setCharacterName(characterName)
@@ -68,8 +71,8 @@ class CustomCharacter(
         binding.tvCharacterStatus.text = bodyText ?: context.getString(R.string.tvCharacterStatus)
     }
 
-    fun setImageSrc(imageSrc: Int) {
-        binding.ivAvatar.setImageResource(imageSrc)
+    fun setImageSrc(imageSrc: String) {
+        binding.ivAvatar.loadImageFromUrl(imageSrc)
     }
 
     fun setCharacterStatusColor(color: Int) {

@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="CustomCharacterView">
-        <attr name="imageSrc" format="integer" />
+        <attr name="imageSrc" format="string" />
         <attr name="characterName" format="string" />
         <attr name="characterStatus" format="string" />
         <attr name="characterStatusColor" format="color" />
