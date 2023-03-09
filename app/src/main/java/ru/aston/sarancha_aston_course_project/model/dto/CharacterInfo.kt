@@ -11,8 +11,8 @@ data class CharacterInfo(
     val gender: String = "male",
     @SerializedName("id")
     val id: Int = 0,
-//    @SerializedName("image")
-//    val image: String,
+    @SerializedName("image")
+    val image: String,
 //    @SerializedName("location")
 //    val location: Location,
     @SerializedName("name")
@@ -23,8 +23,8 @@ data class CharacterInfo(
     val species: String = "species",
     @SerializedName("status")
     val status: String = "Alive",
-    @SerializedName("type")
-    val type: String = "type",
+//    @SerializedName("type")
+//    val type: String = "type",
 //    @SerializedName("url")
 //    val url: String
 )

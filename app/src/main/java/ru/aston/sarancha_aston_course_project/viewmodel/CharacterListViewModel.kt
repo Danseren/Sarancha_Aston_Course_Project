@@ -2,25 +2,21 @@ package ru.aston.sarancha_aston_course_project.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.aston.sarancha_aston_course_project.model.RepositoryCharactersList
-import ru.aston.sarancha_aston_course_project.model.RepositoryCharactersListImpl
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 
 class CharacterListViewModel(
     private val liveData: MutableLiveData<AppState> = MutableLiveData<AppState>()
 ) : ViewModel() {
-    lateinit var repositoryCharactersList: RepositoryCharactersList
 
-    fun getLiveData() : MutableLiveData<AppState> {
-        repositoryCharactersList = RepositoryCharactersListImpl()
+    private val controller = RepositoryRetrofitImpl()
+    val characterResult = controller.characterResult
+
+    fun getLiveData(): MutableLiveData<AppState> {
         return liveData
     }
 
-    fun sentRequest() {
-        liveData.value = AppState.Loading
-        liveData.postValue(
-//            AppState.Success(repositoryCharactersList.getList())
-            AppState.Success(repositoryCharactersList.getLocalList())
-        )
+    fun getResult() {
+        controller.getCharacterList()
     }
 
     override fun onCleared() {

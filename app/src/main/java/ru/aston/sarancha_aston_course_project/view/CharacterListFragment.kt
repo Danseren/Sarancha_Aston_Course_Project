@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
-import ru.aston.sarancha_aston_course_project.viewmodel.AppState
+import ru.aston.sarancha_aston_course_project.model.dto.CharacterDTO
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
 class CharacterListFragment : Fragment(), HasCustomTitle {
@@ -37,26 +36,15 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(CharacterListViewModel::class.java)
-        viewModel.getLiveData()
-            .observe(viewLifecycleOwner, object : Observer<AppState> {
-                override fun onChanged(t: AppState) {
-                    renderData(t)
-                }
-            })
-        viewModel.sentRequest()
-    }
 
-    private fun renderData(appState: AppState) {
-        when (appState) {
-            is AppState.Loading -> {
+        viewModel.getResult()
 
-            }
-            is AppState.Error -> {
-
-            }
-            is AppState.Success -> {
+        viewModel.characterResult.observe(viewLifecycleOwner) {
+            it.let {
+                val result: CharacterDTO = it
+                val list = result.results
                 binding.recyclerCharactersContainer.adapter =
-                    RecyclerCharactersAdapter(appState.character)
+                    RecyclerCharactersAdapter(list)
             }
         }
     }

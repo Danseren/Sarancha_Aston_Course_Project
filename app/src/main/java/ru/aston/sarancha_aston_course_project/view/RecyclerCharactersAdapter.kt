@@ -6,12 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.aston.sarancha_aston_course_project.databinding.RecyclerCharactersBinding
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
-import ru.aston.sarancha_aston_course_project.domain.Character
 import ru.aston.sarancha_aston_course_project.utils.STATUS_ALIVE
 import ru.aston.sarancha_aston_course_project.utils.STATUS_DEAD
 
-//class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
-class RecyclerCharactersAdapter(private val listData: List<Character>) :
+class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
     var clickAction: ((CharacterInfo) -> Unit)? = null
@@ -34,7 +32,7 @@ class RecyclerCharactersAdapter(private val listData: List<Character>) :
                     custom.apply {
                         setCharacterName(listData[position].name)
                         setCharacterStatus(listData[position].status)
-                        setImageSrc(listData[position].imgUrl)
+                        setImageSrc(listData[position].image)
                         setCharacterSpecies(listData[position].species)
                         setCharacterGender(listData[position].gender)
                         when (listData[position].status) {
