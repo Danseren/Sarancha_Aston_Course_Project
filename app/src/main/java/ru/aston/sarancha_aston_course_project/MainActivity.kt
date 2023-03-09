@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(), Navigator {
 
     private lateinit var binding: ActivityMainBinding
 
+
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
 
