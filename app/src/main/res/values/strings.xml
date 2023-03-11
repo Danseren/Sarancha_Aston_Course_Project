@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Sarancha_Aston_Course_Project</string>
+
+    <string name="tvCharacterName">CharacterName</string>
+    <string name="tvCharacterStatus">CharacterStatus</string>
+    <string name="tvSpeciesTitle">Species:</string>
+    <string name="tvSpecies">CharacterSpecies</string>
+    <string name="tvGenderTitle">Gender:</string>
+    <string name="tvGender">CharacterGender</string>
+
+    <string name="itemCharacters">Characters</string>
+    <string name="itemLocations">Locations</string>
+    <string name="itemEpisodes">Episodes</string>
+
+    <string name="titleCharacters">Characters</string>
+    <string name="titleLocations">Locations</string>
+    <string name="titleEpisodes">Episodes</string>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginMedium">8dp</dimen>
+    <dimen name="marginLarge">16dp</dimen>
+    <dimen name="marginExtraLarge">24dp</dimen>
+    <dimen name="paddingLarge">16dp</dimen>
+    <dimen name="paddingMedium">8dp</dimen>
+    <dimen name="chipSpacingHorizontal">4dp</dimen>
+    <dimen name="btnTextSize">20sp</dimen>
+    <dimen name="radius">8dp</dimen>
+    <dimen name="elevation">8dp</dimen>
+</resources>
