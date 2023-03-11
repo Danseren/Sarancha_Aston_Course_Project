@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 
-class CharacterListViewModel(
+class CharacterListViewModel() : ViewModel() {
+
     private val liveData: MutableLiveData<AppState> = MutableLiveData<AppState>()
-) : ViewModel() {
 
     private val controller = RepositoryRetrofitImpl()
     val characterResult = controller.characterResult

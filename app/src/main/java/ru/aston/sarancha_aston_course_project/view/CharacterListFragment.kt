@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDTO
+import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
 class CharacterListFragment : Fragment(), HasCustomTitle {
@@ -41,7 +41,7 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
 
         viewModel.characterResult.observe(viewLifecycleOwner) {
             it.let {
-                val result: CharacterDTO = it
+                val result: CharacterDto = it
                 val list = result.results
                 binding.recyclerCharactersContainer.adapter =
                     RecyclerCharactersAdapter(list)
