@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
@@ -12,11 +11,7 @@ import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersList
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
-class CharacterListFragment : Fragment(), HasCustomTitle {
-
-    private var _binding: FragmentCharactersListBinding? = null
-    private val binding get() = _binding!!
-
+class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), HasCustomTitle {
 
     companion object {
         fun newInstance() = CharacterListFragment()
@@ -28,7 +23,6 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharactersListBinding.inflate(inflater)
         return binding.root
     }
 
@@ -51,8 +45,7 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
 
     override fun getTitleRes(): Int = R.string.titleCharacters
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun getViewBinding(): FragmentCharactersListBinding {
+        return FragmentCharactersListBinding.inflate(layoutInflater)
     }
 }
