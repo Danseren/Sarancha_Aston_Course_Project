@@ -1,22 +1,22 @@
 package ru.aston.sarancha_aston_course_project
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
-import ru.aston.sarancha_aston_course_project.contract.Navigator
 import ru.aston.sarancha_aston_course_project.databinding.ActivityMainBinding
-import ru.aston.sarancha_aston_course_project.utils.makeGone
-import ru.aston.sarancha_aston_course_project.utils.makeVisible
+import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
 
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val router = Router()
 
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
@@ -42,7 +42,12 @@ class MainActivity : AppCompatActivity(), Navigator {
         initViews()
 
         if (savedInstanceState == null) {
-            launchFragment(CharacterListFragment.newInstance(), R.id.container)
+            router.addFragment(
+                supportFragmentManager,
+                binding.container.id,
+                CharacterListFragment.newInstance(),
+                CHARACTER_LIST_FRAGMENT_TAG
+            )
         }
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentListener, false)
     }
@@ -55,25 +60,31 @@ class MainActivity : AppCompatActivity(), Navigator {
                     when (item.itemId) {
 
                         R.id.itemCharacters -> {
-                            launchFragment(
+                            router.replaceFragment(
+                                supportFragmentManager,
+                                container.id,
                                 CharacterListFragment.newInstance(),
-                                R.id.container
+                                CHARACTER_LIST_FRAGMENT_TAG
                             )
                             true
                         }
 
                         R.id.itemLocations -> {
-                            launchFragment(
+                            router.replaceFragment(
+                                supportFragmentManager,
+                                container.id,
                                 LocationsListFragment.newInstance(),
-                                R.id.container
+                                LOCATIONS_LIST_FRAGMENT_TAG
                             )
                             true
                         }
 
                         R.id.itemEpisodes -> {
-                            launchFragment(
+                            router.replaceFragment(
+                                supportFragmentManager,
+                                container.id,
                                 EpisodesListFragment.newInstance(),
-                                R.id.container
+                                EPISODES_LIST_FRAGMENT_TAG
                             )
                             true
                         }
@@ -86,48 +97,6 @@ class MainActivity : AppCompatActivity(), Navigator {
                 selectedItemId = R.id.itemCharacters
             }
         }
-    }
-
-    override fun showCharactersScreen() {
-        launchFragmentWithAddToBackStack(
-            fragment = CharacterListFragment.newInstance(),
-            R.id.container
-        )
-    }
-
-    override fun showLocationsScreen() {
-
-    }
-
-    override fun showEpisodesScreen() {
-
-    }
-
-    override fun showCharacterInfoScreen() {
-
-    }
-
-    override fun showEpisodeInfoScreen() {
-
-    }
-
-    override fun showLocationInfoScreen() {
-
-    }
-
-    private fun launchFragment(fragment: Fragment, container: Int) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(container, fragment)
-            .commit()
-    }
-
-    private fun launchFragmentWithAddToBackStack(fragment: Fragment, container: Int) {
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(container, fragment)
-            .commit()
     }
 
     private fun updateUI() {
