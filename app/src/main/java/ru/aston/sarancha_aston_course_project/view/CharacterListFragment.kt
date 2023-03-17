@@ -29,7 +29,7 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(CharacterListViewModel::class.java)
+        viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
 
         viewModel.getResult()
 

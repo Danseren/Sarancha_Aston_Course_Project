@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
         if (savedInstanceState == null) {
-            router.addFragment(
+            router.replaceFragment(
                 supportFragmentManager,
                 binding.container.id,
                 CharacterListFragment.newInstance(),
