@@ -15,7 +15,6 @@ import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     private val router = Router()
     private var pageNumber = START_PAGE
 
