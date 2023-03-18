@@ -10,3 +10,8 @@ const val RICK_AND_MORTY_API_RETROFIT = "https://rickandmortyapi.com/api/"
 const val CHARACTER_LIST_FRAGMENT_TAG = "CharacterListFragment"
 const val LOCATIONS_LIST_FRAGMENT_TAG = "LocationsListFragment"
 const val EPISODES_LIST_FRAGMENT_TAG = "EpisodesListFragment"
+
+const val PAGE_NUMBER_BUNDLE = "PAGE_NUMBER_BUNDLE"
+
+const val START_PAGE = 1
+const val LAST_PAGE = 42

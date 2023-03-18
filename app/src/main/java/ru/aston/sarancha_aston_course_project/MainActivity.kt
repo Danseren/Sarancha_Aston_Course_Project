@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val router = Router()
+    private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
@@ -42,10 +43,8 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
         if (savedInstanceState == null) {
-            router.replaceFragment(
-                supportFragmentManager,
-                binding.container.id,
-                CharacterListFragment.newInstance(),
+            startFragment(
+                CharacterListFragment.newInstance(START_PAGE),
                 CHARACTER_LIST_FRAGMENT_TAG
             )
         }
@@ -55,24 +54,54 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         with(binding) {
 
+            btnNext.setOnClickListener {
+                pageNumber++
+                if (pageNumber > LAST_PAGE) {
+                    pageNumber %= LAST_PAGE
+                }
+                val bundle = Bundle()
+                bundle.putInt(
+                    PAGE_NUMBER_BUNDLE,
+                    pageNumber
+                )
+                startFragmentWithBundle(
+                    CharacterListFragment.newInstance(pageNumber),
+                    CHARACTER_LIST_FRAGMENT_TAG,
+                    bundle
+                )
+            }
+
+            btnPrevious.setOnClickListener {
+                pageNumber--
+                if (pageNumber < START_PAGE) {
+                    pageNumber = LAST_PAGE
+                }
+                val bundle = Bundle()
+                bundle.putInt(
+                    PAGE_NUMBER_BUNDLE,
+                    pageNumber
+                )
+                startFragmentWithBundle(
+                    CharacterListFragment.newInstance(pageNumber),
+                    CHARACTER_LIST_FRAGMENT_TAG,
+                    bundle
+                )
+            }
+
             bottomNavigation.apply {
                 setOnItemSelectedListener { item ->
                     when (item.itemId) {
 
                         R.id.itemCharacters -> {
-                            router.replaceFragment(
-                                supportFragmentManager,
-                                container.id,
-                                CharacterListFragment.newInstance(),
+                            startFragment(
+                                CharacterListFragment.newInstance(pageNumber),
                                 CHARACTER_LIST_FRAGMENT_TAG
                             )
                             true
                         }
 
                         R.id.itemLocations -> {
-                            router.replaceFragment(
-                                supportFragmentManager,
-                                container.id,
+                            startFragment(
                                 LocationsListFragment.newInstance(),
                                 LOCATIONS_LIST_FRAGMENT_TAG
                             )
@@ -80,9 +109,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         R.id.itemEpisodes -> {
-                            router.replaceFragment(
-                                supportFragmentManager,
-                                container.id,
+                            startFragment(
                                 EpisodesListFragment.newInstance(),
                                 EPISODES_LIST_FRAGMENT_TAG
                             )
@@ -102,21 +129,43 @@ class MainActivity : AppCompatActivity() {
     private fun updateUI() {
         val fragment = currentFragment
 
-        if (fragment is HasCustomTitle) {
-            binding.toolbar.title = getString(fragment.getTitleRes())
-        } else {
-            binding.toolbar.title = getString(R.string.titleCharacters)
+        with(binding) {
+            if (fragment is HasCustomTitle) {
+                toolbar.title = getString(fragment.getTitleRes())
+            } else {
+                toolbar.title = getString(R.string.titleCharacters)
+            }
+
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.setDisplayShowHomeEnabled(true)
+                bottomNavigation.makeGone()
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setDisplayShowHomeEnabled(false)
+                bottomNavigation.makeVisible()
+            }
         }
 
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            binding.bottomNavigation.makeGone()
-        } else {
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            supportActionBar?.setDisplayShowHomeEnabled(false)
-            if (binding.bottomNavigation != null) binding.bottomNavigation.makeVisible()
-        }
+    }
+
+    private fun startFragment(fragment: Fragment, tag: String) {
+        router.replaceFragment(
+            supportFragmentManager,
+            binding.container.id,
+            fragment,
+            tag
+        )
+    }
+
+    private fun startFragmentWithBundle(fragment: Fragment, tag: String, bundle: Bundle) {
+        router.replaceFragmentWithBundle(
+            supportFragmentManager,
+            binding.container.id,
+            fragment,
+            tag,
+            bundle
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {

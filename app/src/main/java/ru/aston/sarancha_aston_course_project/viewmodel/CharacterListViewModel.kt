@@ -20,10 +20,10 @@ class CharacterListViewModel() : ViewModel() {
         return liveData
     }
 
-    fun getResult() {
+    fun getResult(pageNumber: Int) {
 
         disposable = Single
-            .just(controller.getCharacterList())
+            .just(controller.getCharacterList(pageNumber))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe()
