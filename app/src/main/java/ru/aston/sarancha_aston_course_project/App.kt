@@ -1,6 +1,9 @@
 package ru.aston.sarancha_aston_course_project
 
 import android.app.Application
+import ru.aston.sarancha_aston_course_project.di.AppComponent
+import ru.aston.sarancha_aston_course_project.di.AppModule
+import ru.aston.sarancha_aston_course_project.di.DaggerAppComponent
 
 class App : Application() {
 
@@ -8,11 +11,15 @@ class App : Application() {
         lateinit var app: App
     }
 
-    lateinit var router: Router
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         app = this
-        router = Router()
+
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(this))
+            .build()
     }
 }

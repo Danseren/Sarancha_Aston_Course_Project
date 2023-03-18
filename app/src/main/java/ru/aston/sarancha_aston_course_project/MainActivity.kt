@@ -1,5 +1,6 @@
 package ru.aston.sarancha_aston_course_project
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +12,14 @@ import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var router: IRouter
+
     private lateinit var binding: ActivityMainBinding
-    private val router = Router()
     private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
@@ -35,6 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        App.app.appComponent.inject(this@MainActivity)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -53,38 +60,15 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         with(binding) {
 
+            btnNext.text = (START_PAGE + 1).toString()
+            btnPrevious.text = LAST_PAGE.toString()
+
             btnNext.setOnClickListener {
-                pageNumber++
-                if (pageNumber > LAST_PAGE) {
-                    pageNumber %= LAST_PAGE
-                }
-                val bundle = Bundle()
-                bundle.putInt(
-                    PAGE_NUMBER_BUNDLE,
-                    pageNumber
-                )
-                startFragmentWithBundle(
-                    CharacterListFragment.newInstance(pageNumber),
-                    CHARACTER_LIST_FRAGMENT_TAG,
-                    bundle
-                )
+                onNextPage()
             }
 
             btnPrevious.setOnClickListener {
-                pageNumber--
-                if (pageNumber < START_PAGE) {
-                    pageNumber = LAST_PAGE
-                }
-                val bundle = Bundle()
-                bundle.putInt(
-                    PAGE_NUMBER_BUNDLE,
-                    pageNumber
-                )
-                startFragmentWithBundle(
-                    CharacterListFragment.newInstance(pageNumber),
-                    CHARACTER_LIST_FRAGMENT_TAG,
-                    bundle
-                )
+                onPreviousPage()
             }
 
             bottomNavigation.apply {
@@ -165,6 +149,71 @@ class MainActivity : AppCompatActivity() {
             tag,
             bundle
         )
+    }
+
+    private fun onNextPage() {
+        pageNumber++
+
+        if (pageNumber > LAST_PAGE) {
+            pageNumber %= LAST_PAGE
+        }
+
+        val bundle = Bundle()
+        bundle.putInt(
+            PAGE_NUMBER_BUNDLE,
+            pageNumber
+        )
+
+        previousAndNextPageNumber(pageNumber)
+
+        startFragmentWithBundle(
+            CharacterListFragment.newInstance(pageNumber),
+            CHARACTER_LIST_FRAGMENT_TAG,
+            bundle
+        )
+    }
+
+    private fun onPreviousPage() {
+        pageNumber--
+
+        if (pageNumber < START_PAGE) {
+            pageNumber = LAST_PAGE
+        }
+
+        val bundle = Bundle()
+        bundle.putInt(
+            PAGE_NUMBER_BUNDLE,
+            pageNumber
+        )
+
+        previousAndNextPageNumber(pageNumber)
+
+        startFragmentWithBundle(
+            CharacterListFragment.newInstance(pageNumber),
+            CHARACTER_LIST_FRAGMENT_TAG,
+            bundle
+        )
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun previousAndNextPageNumber(pageNumber: Int) {
+        with(binding) {
+            when (pageNumber){
+                in 2..41 -> {
+                    btnPrevious.text = (pageNumber - 1).toString()
+                    btnNext.text = (pageNumber + 1).toString()
+                }
+                START_PAGE -> {
+                    btnPrevious.text = LAST_PAGE.toString()
+                    btnNext.text = (pageNumber + 1).toString()
+                }
+                LAST_PAGE -> {
+                    btnPrevious.text = (pageNumber - 1).toString()
+                    btnNext.text = LAST_PAGE.toString()
+                }
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

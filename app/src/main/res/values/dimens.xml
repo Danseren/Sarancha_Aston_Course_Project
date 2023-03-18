@@ -9,4 +9,6 @@
     <dimen name="btnTextSize">20sp</dimen>
     <dimen name="radius">8dp</dimen>
     <dimen name="elevation">8dp</dimen>
+    <dimen name="textSizeExtraSmall">8sp</dimen>
+    <dimen name="btnPaginationWidth">44dp</dimen>
 </resources>
