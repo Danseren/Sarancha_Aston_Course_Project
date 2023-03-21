@@ -9,7 +9,7 @@ import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.databinding.CharacterInfoBinding
 import ru.aston.sarancha_aston_course_project.utils.loadImageFromUrl
 
-class CustomCharacter(
+class CustomCharacterView(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int,

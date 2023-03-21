@@ -4,22 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDTO
+import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.utils.PAGE_NUMBER_BUNDLE
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
-class CharacterListFragment : Fragment(), HasCustomTitle {
-
-    private var _binding: FragmentCharactersListBinding? = null
-    private val binding get() = _binding!!
-
+class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), HasCustomTitle {
 
     companion object {
-        fun newInstance() = CharacterListFragment()
+        fun newInstance(pageNumber: Int): CharacterListFragment {
+            val args = Bundle()
+            args.putInt(PAGE_NUMBER_BUNDLE, pageNumber)
+            val fragment = CharacterListFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     lateinit var viewModel: CharacterListViewModel
@@ -28,20 +30,20 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCharactersListBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(CharacterListViewModel::class.java)
+        viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
 
-        viewModel.getResult()
+        val bundle = Bundle()
+        arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
 
         viewModel.characterResult.observe(viewLifecycleOwner) {
             it.let {
-                val result: CharacterDTO = it
+                val result: CharacterDto = it
                 val list = result.results
                 binding.recyclerCharactersContainer.adapter =
                     RecyclerCharactersAdapter(list)
@@ -51,8 +53,7 @@ class CharacterListFragment : Fragment(), HasCustomTitle {
 
     override fun getTitleRes(): Int = R.string.titleCharacters
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun getViewBinding(): FragmentCharactersListBinding {
+        return FragmentCharactersListBinding.inflate(layoutInflater)
     }
 }

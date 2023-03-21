@@ -1,22 +1,23 @@
 package ru.aston.sarancha_aston_course_project
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
-import ru.aston.sarancha_aston_course_project.contract.Navigator
 import ru.aston.sarancha_aston_course_project.databinding.ActivityMainBinding
-import ru.aston.sarancha_aston_course_project.utils.makeGone
-import ru.aston.sarancha_aston_course_project.utils.makeVisible
+import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
 
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val router = Router()
+    private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
@@ -42,7 +43,10 @@ class MainActivity : AppCompatActivity(), Navigator {
         initViews()
 
         if (savedInstanceState == null) {
-            launchFragment(CharacterListFragment.newInstance(), R.id.container)
+            startFragment(
+                CharacterListFragment.newInstance(START_PAGE),
+                CHARACTER_LIST_FRAGMENT_TAG
+            )
         }
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentListener, false)
     }
@@ -50,30 +54,64 @@ class MainActivity : AppCompatActivity(), Navigator {
     private fun initViews() {
         with(binding) {
 
+            btnNext.setOnClickListener {
+                pageNumber++
+                if (pageNumber > LAST_PAGE) {
+                    pageNumber %= LAST_PAGE
+                }
+                val bundle = Bundle()
+                bundle.putInt(
+                    PAGE_NUMBER_BUNDLE,
+                    pageNumber
+                )
+                startFragmentWithBundle(
+                    CharacterListFragment.newInstance(pageNumber),
+                    CHARACTER_LIST_FRAGMENT_TAG,
+                    bundle
+                )
+            }
+
+            btnPrevious.setOnClickListener {
+                pageNumber--
+                if (pageNumber < START_PAGE) {
+                    pageNumber = LAST_PAGE
+                }
+                val bundle = Bundle()
+                bundle.putInt(
+                    PAGE_NUMBER_BUNDLE,
+                    pageNumber
+                )
+                startFragmentWithBundle(
+                    CharacterListFragment.newInstance(pageNumber),
+                    CHARACTER_LIST_FRAGMENT_TAG,
+                    bundle
+                )
+            }
+
             bottomNavigation.apply {
                 setOnItemSelectedListener { item ->
                     when (item.itemId) {
 
                         R.id.itemCharacters -> {
-                            launchFragment(
-                                CharacterListFragment.newInstance(),
-                                R.id.container
+                            startFragment(
+                                CharacterListFragment.newInstance(pageNumber),
+                                CHARACTER_LIST_FRAGMENT_TAG
                             )
                             true
                         }
 
                         R.id.itemLocations -> {
-                            launchFragment(
+                            startFragment(
                                 LocationsListFragment.newInstance(),
-                                R.id.container
+                                LOCATIONS_LIST_FRAGMENT_TAG
                             )
                             true
                         }
 
                         R.id.itemEpisodes -> {
-                            launchFragment(
+                            startFragment(
                                 EpisodesListFragment.newInstance(),
-                                R.id.container
+                                EPISODES_LIST_FRAGMENT_TAG
                             )
                             true
                         }
@@ -88,66 +126,46 @@ class MainActivity : AppCompatActivity(), Navigator {
         }
     }
 
-    override fun showCharactersScreen() {
-        launchFragmentWithAddToBackStack(
-            fragment = CharacterListFragment.newInstance(),
-            R.id.container
-        )
-    }
-
-    override fun showLocationsScreen() {
-
-    }
-
-    override fun showEpisodesScreen() {
-
-    }
-
-    override fun showCharacterInfoScreen() {
-
-    }
-
-    override fun showEpisodeInfoScreen() {
-
-    }
-
-    override fun showLocationInfoScreen() {
-
-    }
-
-    private fun launchFragment(fragment: Fragment, container: Int) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(container, fragment)
-            .commit()
-    }
-
-    private fun launchFragmentWithAddToBackStack(fragment: Fragment, container: Int) {
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(container, fragment)
-            .commit()
-    }
-
     private fun updateUI() {
         val fragment = currentFragment
 
-        if (fragment is HasCustomTitle) {
-            binding.toolbar.title = getString(fragment.getTitleRes())
-        } else {
-            binding.toolbar.title = getString(R.string.titleCharacters)
+        with(binding) {
+            if (fragment is HasCustomTitle) {
+                toolbar.title = getString(fragment.getTitleRes())
+            } else {
+                toolbar.title = getString(R.string.titleCharacters)
+            }
+
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.setDisplayShowHomeEnabled(true)
+                bottomNavigation.makeGone()
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setDisplayShowHomeEnabled(false)
+                bottomNavigation.makeVisible()
+            }
         }
 
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            binding.bottomNavigation.makeGone()
-        } else {
-            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            supportActionBar?.setDisplayShowHomeEnabled(false)
-            if (binding.bottomNavigation != null) binding.bottomNavigation.makeVisible()
-        }
+    }
+
+    private fun startFragment(fragment: Fragment, tag: String) {
+        router.replaceFragment(
+            supportFragmentManager,
+            binding.container.id,
+            fragment,
+            tag
+        )
+    }
+
+    private fun startFragmentWithBundle(fragment: Fragment, tag: String, bundle: Bundle) {
+        router.replaceFragmentWithBundle(
+            supportFragmentManager,
+            binding.container.id,
+            fragment,
+            tag,
+            bundle
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
