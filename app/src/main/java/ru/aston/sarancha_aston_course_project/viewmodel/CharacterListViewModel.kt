@@ -3,9 +3,7 @@ package ru.aston.sarancha_aston_course_project.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 
 class CharacterListViewModel() : ViewModel() {
@@ -22,11 +20,17 @@ class CharacterListViewModel() : ViewModel() {
 
     fun getResult(pageNumber: Int) {
 
-        disposable = Single
-            .just(controller.getCharacterList(pageNumber))
+        disposable = controller
+            .getData(pageNumber)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+            .subscribe(
+                {
+                    characterResult.postValue(it)
+                },
+                {
+
+                }
+            )
     }
 
     override fun onCleared() {

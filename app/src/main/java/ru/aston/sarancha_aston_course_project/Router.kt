@@ -55,24 +55,11 @@ class Router : IRouter {
         tag: String,
         bundle: Bundle
     ) {
-        val previousFragment = fragmentManager.findFragmentByTag(tag)
 
-        try {
-            if (previousFragment == null) {
-                fragmentManager
-                    .beginTransaction()
-                    .add(containerId, fragment::class.java, bundle, tag)
-                    .commit()
-            } else {
-                fragmentManager
-                    .beginTransaction()
-                    .replace(containerId, previousFragment::class.java, bundle, tag)
-                    .commit()
-            }
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
-
+        fragmentManager
+            .beginTransaction()
+            .replace(containerId, fragment::class.java, bundle, tag)
+            .commit()
     }
 
     override fun deleteFragment(

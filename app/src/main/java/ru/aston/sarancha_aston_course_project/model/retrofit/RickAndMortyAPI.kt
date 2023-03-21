@@ -1,6 +1,6 @@
 package ru.aston.sarancha_aston_course_project.model.retrofit
 
-import retrofit2.Call
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -10,5 +10,5 @@ interface RickAndMortyAPI {
 
     @Headers("Content-type: application/json")
     @GET("character")
-    fun getCharacterList(@Query("page") pageNumber: Int): Call<CharacterDto>
+    fun getCharacterList(@Query("page") pageNumber: Int): Single<CharacterDto>
 }
