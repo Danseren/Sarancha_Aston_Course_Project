@@ -3,7 +3,6 @@ package ru.aston.sarancha_aston_course_project
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
@@ -12,14 +11,14 @@ import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
+import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @Inject
     lateinit var router: IRouter
 
-    private lateinit var binding: ActivityMainBinding
     private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
@@ -37,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         App.app.appComponent.inject(this@MainActivity)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
         initViews()
@@ -198,7 +197,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun previousAndNextPageNumber(pageNumber: Int) {
         with(binding) {
-            when (pageNumber){
+            when (pageNumber) {
                 in 2..41 -> {
                     btnPrevious.text = (pageNumber - 1).toString()
                     btnNext.text = (pageNumber + 1).toString()
@@ -209,7 +208,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 LAST_PAGE -> {
                     btnPrevious.text = (pageNumber - 1).toString()
-                    btnNext.text = LAST_PAGE.toString()
+                    btnNext.text = START_PAGE.toString()
                 }
             }
         }

@@ -10,6 +10,7 @@ import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
 import ru.aston.sarancha_aston_course_project.utils.PAGE_NUMBER_BUNDLE
+import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 
 class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), HasCustomTitle {

@@ -5,22 +5,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
 import ru.aston.sarancha_aston_course_project.MainActivity
 import ru.aston.sarancha_aston_course_project.databinding.ActivitySplashScreenBinding
 import ru.aston.sarancha_aston_course_project.utils.SPLASH_DELAY
+import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
 
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity<ActivitySplashScreenBinding>() {
 
-    private lateinit var binding: ActivitySplashScreenBinding
     private val handler = Handler(Looper.getMainLooper())
+
+    override fun getViewBinding() = ActivitySplashScreenBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         splashAnimation()
     }
