@@ -11,4 +11,7 @@
     <dimen name="elevation">8dp</dimen>
     <dimen name="textSizeExtraSmall">8sp</dimen>
     <dimen name="btnPaginationWidth">44dp</dimen>
+    <dimen name="checkboxRadius">60dp</dimen>
+    <dimen name="btnShapeCircleStroke">2dp</dimen>
+    <dimen name="spinnerLayoutHeight">60dp</dimen>
 </resources>

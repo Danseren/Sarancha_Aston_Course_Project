@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import ru.aston.sarancha_aston_course_project.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 
 class CharacterListViewModel() : ViewModel() {
@@ -22,6 +23,20 @@ class CharacterListViewModel() : ViewModel() {
 
         disposable = controller
             .getData(pageNumber)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    characterResult.postValue(it)
+                },
+                {
+
+                }
+            )
+    }
+
+    fun getFilterResult(characterFilter: CharacterFilterData) {
+        disposable = controller
+            .getFilteredData(characterFilter)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {

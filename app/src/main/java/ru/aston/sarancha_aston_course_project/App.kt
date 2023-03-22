@@ -12,6 +12,7 @@ class App : Application() {
     }
 
     lateinit var appComponent: AppComponent
+    val characterFilterData = CharacterFilterData()
 
     override fun onCreate() {
         super.onCreate()
