@@ -19,6 +19,7 @@ class Mapper {
                 character.url,
                 character.type
             )
+            characterResult.add(characterEntity)
         }
 
         return characterResult

@@ -1,5 +1,8 @@
 package ru.aston.sarancha_aston_course_project.viewmodel
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -50,11 +53,11 @@ class CharacterListViewModel() : ViewModel() {
 
     fun saveToDatabase(characterDto: CharacterDto) {
 
-        val mapper: Mapper
+        val mapper = Mapper()
 
         scope.launch {
-            repository.getCharactersFromRemote()
-            val characters = repository.getCharactersFromRemote()
+            repository.getCharLisFromNet(mapper.characterDtoToDataBase(characterDto))
+            val characters = repository.getCharLisFromNet(mapper.characterDtoToDataBase(characterDto))
             repository.putAllCharactersToDataBase(characters)
             val charList = repository.getCharactersFromDataBase()
 
@@ -76,6 +79,21 @@ class CharacterListViewModel() : ViewModel() {
 
                 }
             )
+    }
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            when {
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> return true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ->return true
+            }
+        }
+        return false
     }
 
     override fun onCleared() {

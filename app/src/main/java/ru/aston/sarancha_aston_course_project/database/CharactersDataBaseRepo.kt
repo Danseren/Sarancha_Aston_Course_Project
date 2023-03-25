@@ -9,15 +9,11 @@ class CharactersDataBaseRepo(
         return characterDataSource.getCharacters()
     }
 
-    fun putCharacterToDataBase(character: CharactersEntity) {
-        characterDataSource.addCharacter(character)
-    }
-
     fun putAllCharactersToDataBase(charactersList: List<CharactersEntity>) {
         characterDataSource.addAllCharacters(charactersList)
     }
 
-    fun getCharactersFromRemote(): List<CharactersEntity> {
-        return characterApi.getChar()
+    fun getCharLisFromNet(list: List<CharactersEntity>): List<CharactersEntity> {
+        return characterApi.getCharFromNet(list)
     }
 }
