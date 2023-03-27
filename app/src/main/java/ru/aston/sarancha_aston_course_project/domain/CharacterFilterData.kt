@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project
+package ru.aston.sarancha_aston_course_project.domain
 
 data class CharacterFilterData(
     var enabled: Boolean = false,

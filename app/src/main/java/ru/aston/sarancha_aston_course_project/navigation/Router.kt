@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project
+package ru.aston.sarancha_aston_course_project.navigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -46,6 +46,20 @@ class Router : IRouter {
                 .replace(containerId, previousFragment, tag)
                 .commit()
         }
+    }
+
+    override fun replaceFragmentWithBackstack(
+        fragmentManager: FragmentManager,
+        containerId: Int,
+        fragment: Fragment,
+        tag: String
+    ) {
+
+        fragmentManager
+            .beginTransaction()
+            .addToBackStack(null)
+            .replace(containerId, fragment, tag)
+            .commit()
     }
 
     override fun replaceFragmentWithBundle(

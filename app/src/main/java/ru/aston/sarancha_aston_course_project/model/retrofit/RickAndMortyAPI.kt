@@ -6,6 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
 
 interface RickAndMortyAPI {
 

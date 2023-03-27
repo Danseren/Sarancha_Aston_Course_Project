@@ -7,7 +7,9 @@ import ru.aston.sarancha_aston_course_project.database.CharactersDataBase
 import ru.aston.sarancha_aston_course_project.di.AppComponent
 import ru.aston.sarancha_aston_course_project.di.AppModule
 import ru.aston.sarancha_aston_course_project.di.DaggerAppComponent
+import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.utils.CHARACTERS_TABLE_NAME
+import ru.aston.sarancha_aston_course_project.utils.START_PAGE
 
 class App : Application() {
 
@@ -15,6 +17,7 @@ class App : Application() {
         lateinit var app: App
 
         lateinit var dataBase: CharactersDataBase
+        var pageNumber = START_PAGE
     }
 
     lateinit var appComponent: AppComponent

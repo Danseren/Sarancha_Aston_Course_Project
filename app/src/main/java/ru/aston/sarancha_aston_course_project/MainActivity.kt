@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import ru.aston.sarancha_aston_course_project.App.Companion.pageNumber
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.ActivityMainBinding
+import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.*
-import ru.aston.sarancha_aston_course_project.view.CharacterListFragment
-import ru.aston.sarancha_aston_course_project.view.EpisodesListFragment
-import ru.aston.sarancha_aston_course_project.view.LocationsListFragment
+import ru.aston.sarancha_aston_course_project.view.character.CharacterListFragment
+import ru.aston.sarancha_aston_course_project.view.episode.EpisodesListFragment
+import ru.aston.sarancha_aston_course_project.view.location.LocationsListFragment
 import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     @Inject
     lateinit var router: IRouter
 
-    private var pageNumber = START_PAGE
+//    private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
@@ -118,7 +120,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 toolbar.title = getString(R.string.titleCharacters)
             }
 
-            if (supportFragmentManager.backStackEntryCount > 1) {
+            if (supportFragmentManager.backStackEntryCount > 0) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setDisplayShowHomeEnabled(true)
                 bottomNavigation.makeGone()

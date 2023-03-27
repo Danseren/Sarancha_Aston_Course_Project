@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import ru.aston.sarancha_aston_course_project.App
-import ru.aston.sarancha_aston_course_project.CharacterFilterData
+import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.database.CharacterDataSource
 import ru.aston.sarancha_aston_course_project.database.CharactersDataBaseRepo
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
@@ -61,9 +61,9 @@ class CharacterListViewModel() : ViewModel() {
             repository.putAllCharactersToDataBase(characters)
             val charList = repository.getCharactersFromDataBase()
 
-            charList.forEach {
-                Log.d("@@@", it.toString())
-            }
+//            charList.forEach {
+//                Log.d("@@@", it.toString())
+//            }
         }
     }
 
@@ -74,6 +74,22 @@ class CharacterListViewModel() : ViewModel() {
             .subscribe(
                 {
                     characterResult.postValue(it)
+                },
+                {
+
+                }
+            )
+    }
+
+    fun goToCharacterInfo(characterId: Int) {
+        disposable = controller
+            .getData(characterId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    characterResult.postValue(it)
+
+                    saveToDatabase(it)
                 },
                 {
 

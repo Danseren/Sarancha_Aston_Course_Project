@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project
+package ru.aston.sarancha_aston_course_project.navigation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +14,13 @@ interface IRouter {
     )
 
     fun replaceFragment(
+        fragmentManager: FragmentManager,
+        containerId: Int,
+        fragment: Fragment,
+        tag: String
+    )
+
+    fun replaceFragmentWithBackstack(
         fragmentManager: FragmentManager,
         containerId: Int,
         fragment: Fragment,

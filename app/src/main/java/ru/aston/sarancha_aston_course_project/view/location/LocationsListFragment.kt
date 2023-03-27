@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project.view
+package ru.aston.sarancha_aston_course_project.view.location
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
-import ru.aston.sarancha_aston_course_project.databinding.FragmentEpisodesListBinding
+import ru.aston.sarancha_aston_course_project.databinding.FragmentLocationsListBinding
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 
 
-class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCustomTitle {
+class LocationsListFragment : BaseFragment<FragmentLocationsListBinding>(), HasCustomTitle {
 
     companion object {
-        fun newInstance() = EpisodesListFragment()
+        fun newInstance() = LocationsListFragment()
     }
 
     override fun onCreateView(
@@ -28,9 +28,9 @@ class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCus
 
     }
 
-    override fun getTitleRes(): Int = R.string.titleEpisodes
+    override fun getTitleRes(): Int = R.string.titleLocations
 
-    override fun getViewBinding(): FragmentEpisodesListBinding {
-        return FragmentEpisodesListBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentLocationsListBinding {
+        return FragmentLocationsListBinding.inflate(layoutInflater)
     }
 }

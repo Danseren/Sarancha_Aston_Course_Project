@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project.view
+package ru.aston.sarancha_aston_course_project.view.character
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import ru.aston.sarancha_aston_course_project.databinding.RecyclerCharactersBind
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
 import ru.aston.sarancha_aston_course_project.utils.STATUS_ALIVE
 import ru.aston.sarancha_aston_course_project.utils.STATUS_DEAD
+import ru.aston.sarancha_aston_course_project.view.BaseViewHolder
+import ru.aston.sarancha_aston_course_project.view.CharactersViewHolder
 
 class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
     RecyclerView.Adapter<BaseViewHolder>() {
 
     var clickAction: ((CharacterInfo) -> Unit)? = null
     var itemPos: Int = 1
+    val list = listData
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,10 +44,10 @@ class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
                             else -> setCharacterStatusColor(Color.GRAY)
                         }
 
-//                        setOnClickListener {
-//                            itemPos = position
-//                            clickAction?.invoke(listData[position])
-//                        }
+                        setOnClickListener {
+                            itemPos = position
+                            clickAction?.invoke(listData[position])
+                        }
                     }
                 }
             }

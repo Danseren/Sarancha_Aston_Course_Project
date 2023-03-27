@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project.view
+package ru.aston.sarancha_aston_course_project.view.character
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.alert_dialog_characters_filter.view.*
-import ru.aston.sarancha_aston_course_project.CharacterFilterData
+import ru.aston.sarancha_aston_course_project.App
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
+import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
+import javax.inject.Inject
 
 class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), HasCustomTitle {
 
@@ -28,6 +31,9 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
         }
     }
 
+    @Inject
+    lateinit var router: IRouter
+
     lateinit var viewModel: CharacterListViewModel
     private lateinit var alertDialogView: View
     private lateinit var materialAlertDialogBuilder: MaterialAlertDialogBuilder
@@ -36,6 +42,7 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        App.app.appComponent.inject(this@CharacterListFragment)
         return binding.root
     }
 
@@ -52,7 +59,17 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
                 val result: CharacterDto = it
                 val list = result.results
                 binding.recyclerCharactersContainer.adapter =
-                    RecyclerCharactersAdapter(list)
+                    RecyclerCharactersAdapter(list).apply {
+
+                        clickAction = {
+                            router.replaceFragmentWithBackstack(
+                                requireActivity().supportFragmentManager,
+                                R.id.container,
+                                CharacterInfoFragment.newInstance(itemPos),
+                                CHARACTER_INFO_FRAGMENT_TAG
+                            )
+                        }
+                    }
             }
         }
 

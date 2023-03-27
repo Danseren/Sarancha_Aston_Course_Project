@@ -13,8 +13,8 @@ data class CharacterInfo(
     val id: Int = 0,
     @SerializedName("image")
     val image: String,
-//    @SerializedName("location")
-//    val location: Location,
+    @SerializedName("location")
+    val location: Location,
     @SerializedName("name")
     val name: String = "Name",
     @SerializedName("origin")
