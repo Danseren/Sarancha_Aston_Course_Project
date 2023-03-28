@@ -12,4 +12,6 @@ import androidx.room.RoomDatabase
 abstract class CharactersDataBase: RoomDatabase() {
 
     abstract fun getCharactersListDao() : CharactersDao
+
+    
 }

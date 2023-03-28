@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/rick_and_morty"
         app:cardCornerRadius="@dimen/radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintEnd_toEndOf="parent"

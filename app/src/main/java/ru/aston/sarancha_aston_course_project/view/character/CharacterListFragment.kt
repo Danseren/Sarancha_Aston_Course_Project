@@ -11,6 +11,7 @@ import ru.aston.sarancha_aston_course_project.App
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
+import ru.aston.sarancha_aston_course_project.di.AppComponent
 import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
 import ru.aston.sarancha_aston_course_project.navigation.IRouter
@@ -42,7 +43,7 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        App.app.appComponent.inject(this@CharacterListFragment)
+        AppComponent.init(App.app).inject(this)
         return binding.root
     }
 

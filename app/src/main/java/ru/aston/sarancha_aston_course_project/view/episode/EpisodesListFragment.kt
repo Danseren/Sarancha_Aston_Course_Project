@@ -9,6 +9,7 @@ import ru.aston.sarancha_aston_course_project.App
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentEpisodesListBinding
+import ru.aston.sarancha_aston_course_project.di.AppComponent
 import ru.aston.sarancha_aston_course_project.model.dto.episode.EpisodeDto
 import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.EPISODE_INFO_FRAGMENT_TAG
@@ -16,7 +17,6 @@ import ru.aston.sarancha_aston_course_project.utils.PAGE_NUMBER_BUNDLE
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import ru.aston.sarancha_aston_course_project.viewmodel.EpisodeListViewModel
 import javax.inject.Inject
-
 
 class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCustomTitle {
 
@@ -39,7 +39,7 @@ class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCus
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        App.app.appComponent.inject(this@EpisodesListFragment)
+        AppComponent.init(App.app).inject(this)
         return binding.root
     }
 

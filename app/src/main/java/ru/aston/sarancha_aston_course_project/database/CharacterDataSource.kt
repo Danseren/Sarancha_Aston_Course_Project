@@ -1,6 +1,9 @@
 package ru.aston.sarancha_aston_course_project.database
 
-class CharacterDataSource(val characterDao: CharactersDao) {
+import javax.inject.Inject
+
+class CharacterDataSource
+    @Inject constructor(private val characterDao: CharactersDao) {
 
     fun getCharacters(): List<CharactersEntity> {
         return characterDao.getAllCharacters()

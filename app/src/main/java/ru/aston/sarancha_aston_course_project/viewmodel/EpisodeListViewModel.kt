@@ -6,13 +6,13 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
-import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeImpl
 
 class EpisodeListViewModel() : ViewModel() {
 
     private var disposable: Disposable = Disposable.empty()
 
-    private val controller = RepositoryRetrofitImpl()
+    private val controller = RepositoryRetrofitEpisodeImpl()
     val episodeResult = controller.episodeResult
 
     fun getResult(pageNumber: Int) {
@@ -67,7 +67,7 @@ class EpisodeListViewModel() : ViewModel() {
             when {
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> return true
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> return true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ->return true
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> return true
             }
         }
         return false

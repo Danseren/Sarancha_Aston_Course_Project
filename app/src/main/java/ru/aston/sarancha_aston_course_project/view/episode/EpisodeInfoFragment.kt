@@ -10,7 +10,7 @@ import ru.aston.sarancha_aston_course_project.App.Companion.pageNumber
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentEpisodeInfoBinding
-import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeImpl
 import ru.aston.sarancha_aston_course_project.utils.EPISODE_INFO
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import kotlin.properties.Delegates
@@ -30,8 +30,7 @@ class EpisodeInfoFragment : BaseFragment<FragmentEpisodeInfoBinding>(), HasCusto
     private var episodeId by Delegates.notNull<Int>()
 
     private var disposable: Disposable = Disposable.empty()
-    private val controller = RepositoryRetrofitImpl()
-//    val characterResult = controller.characterResult
+    private val episodeController = RepositoryRetrofitEpisodeImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +58,7 @@ class EpisodeInfoFragment : BaseFragment<FragmentEpisodeInfoBinding>(), HasCusto
 
     private fun getResult(episodeId: Int) {
 
-        disposable = controller
+        disposable = episodeController
             .getEpisodeData(pageNumber)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

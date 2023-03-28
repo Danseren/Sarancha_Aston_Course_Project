@@ -1,6 +1,9 @@
 package ru.aston.sarancha_aston_course_project.database
 
-class CharactersDataBaseRepo(
+import javax.inject.Inject
+
+class CharactersDataBaseRepo
+@Inject constructor(
     private val characterApi: CharacterApi = CharacterApi(),
     private val characterDataSource: CharacterDataSource
 ) {

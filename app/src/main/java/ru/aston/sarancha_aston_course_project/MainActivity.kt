@@ -8,20 +8,19 @@ import androidx.fragment.app.FragmentManager
 import ru.aston.sarancha_aston_course_project.App.Companion.pageNumber
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.ActivityMainBinding
+import ru.aston.sarancha_aston_course_project.di.AppComponent
 import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.*
+import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
 import ru.aston.sarancha_aston_course_project.view.character.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.episode.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.location.LocationsListFragment
-import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     @Inject
     lateinit var router: IRouter
-
-//    private var pageNumber = START_PAGE
 
     private val currentFragment: Fragment
         get() = supportFragmentManager.findFragmentById(R.id.container)!!
@@ -43,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        App.app.appComponent.inject(this@MainActivity)
+        AppComponent.init(App.app).inject(this)
 
         setSupportActionBar(binding.toolbar)
 
