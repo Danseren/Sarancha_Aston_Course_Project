@@ -93,8 +93,8 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
         materialAlertDialogBuilder
             .setView(alertDialogView)
             .setTitle(CHARACTER_FILTER_DIALOG_TITLE)
-            .setMessage(CHARACTER_FILTER_MESSAGE)
-            .setPositiveButton(CHARACTER_FILTER_POSITIVE_BUTTON) { dialog, _ ->
+            .setMessage(FILTER_MESSAGE)
+            .setPositiveButton(FILTER_POSITIVE_BUTTON) { dialog, _ ->
                 with(alertDialogView) {
                     characterFilter.apply {
                         enabled = true
@@ -112,7 +112,7 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
                 viewModel.getFilterResult(characterFilter)
                 dialog.dismiss()
             }
-            .setNegativeButton(CHARACTER_FILTER_NEGATIVE_BUTTON) { dialog, _ ->
+            .setNegativeButton(FILTER_NEGATIVE_BUTTON) { dialog, _ ->
                 binding.checkboxFilter.isChecked = false
                 dialog.dismiss()
             }

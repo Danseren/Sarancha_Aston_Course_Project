@@ -25,4 +25,10 @@ interface RickAndMortyAPI {
     @Headers("Content-type: application/json")
     @GET("episode")
     fun getEpisodeList(@Query("page") pageNumber: Int): Single<EpisodeDto>
+
+    @GET("episode")
+    fun getFilteredEpisodeList(
+        @Query("name") name: String,
+        @Query("episode") episode: String
+    ): Single<EpisodeDto>
 }

@@ -6,6 +6,12 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
+import ru.aston.sarancha_aston_course_project.domain.EpisodeFilterData
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitCharacterFilterImpl
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeFilterImpl
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeImpl
 
 class EpisodeListViewModel() : ViewModel() {
@@ -14,6 +20,8 @@ class EpisodeListViewModel() : ViewModel() {
 
     private val controller = RepositoryRetrofitEpisodeImpl()
     val episodeResult = controller.episodeResult
+
+    private val episodeFilterController = RepositoryRetrofitEpisodeFilterImpl()
 
     fun getResult(pageNumber: Int) {
 
@@ -30,6 +38,19 @@ class EpisodeListViewModel() : ViewModel() {
             )
     }
 
+    fun getFilterResult(episodeFilter: EpisodeFilterData) {
+        disposable = episodeFilterController
+            .getFilteredData(episodeFilter)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    episodeResult.postValue(it)
+                },
+                {
+
+                }
+            )
+    }
 //    fun getFilterResult(characterFilter: CharacterFilterData) {
 //        disposable = controller
 //            .getFilteredData(characterFilter)

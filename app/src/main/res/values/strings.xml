@@ -22,6 +22,7 @@
     <string name="textInputLayoutTypeHint">type</string>
     <string name="textInputLayoutSpeciesHint">species</string>
     <string name="textInputLayoutNameHint">name</string>
+    <string name="textInputLayoutEpisodeHint">episode</string>
 
     <string-array name="spinnerStatusList">
         <item>alive</item>
