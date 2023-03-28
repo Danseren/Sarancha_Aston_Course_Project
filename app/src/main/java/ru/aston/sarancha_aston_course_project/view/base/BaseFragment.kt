@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project.view
+package ru.aston.sarancha_aston_course_project.view.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

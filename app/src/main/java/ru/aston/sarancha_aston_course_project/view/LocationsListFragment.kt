@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentLocationsListBinding
+import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 
 
 class LocationsListFragment : BaseFragment<FragmentLocationsListBinding>(), HasCustomTitle {

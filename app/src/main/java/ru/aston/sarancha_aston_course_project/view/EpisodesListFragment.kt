@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentEpisodesListBinding
+import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 
 
 class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCustomTitle {

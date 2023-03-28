@@ -15,4 +15,20 @@
     <string name="titleCharacters">Characters</string>
     <string name="titleLocations">Locations</string>
     <string name="titleEpisodes">Episodes</string>
+    <string name="textInputLayoutTypeHint">type</string>
+    <string name="textInputLayoutSpeciesHint">species</string>
+    <string name="textInputLayoutNameHint">name</string>
+
+    <string-array name="spinnerStatusList">
+        <item>alive</item>
+        <item>dead</item>
+        <item>unknown</item>
+    </string-array>
+
+    <string-array name="spinnerGenderList">
+        <item>female</item>
+        <item>male</item>
+        <item>genderless</item>
+        <item>unknown</item>
+    </string-array>
 </resources>

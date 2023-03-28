@@ -15,26 +15,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIconTint="@color/white"
-        app:titleTextColor="@color/white"
-        app:title="@string/itemCharacters" />
+        app:title="@string/itemCharacters"
+        app:titleTextColor="@color/white" />
 
     <Button
         android:id="@+id/btnPrevious"
         style="?attr/materialButtonOutlinedStyle"
-        android:layout_width="30dp"
+        android:layout_width="@dimen/btnPaginationWidth"
         android:layout_height="0dp"
+        android:textSize="@dimen/textSizeExtraSmall"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
         style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="@dimen/btnPaginationWidth"
+        android:layout_height="0dp"
+        android:textSize="@dimen/textSizeExtraSmall"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"

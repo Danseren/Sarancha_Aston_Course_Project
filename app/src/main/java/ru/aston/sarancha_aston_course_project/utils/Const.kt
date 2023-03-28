@@ -15,3 +15,10 @@ const val PAGE_NUMBER_BUNDLE = "PAGE_NUMBER_BUNDLE"
 
 const val START_PAGE = 1
 const val LAST_PAGE = 42
+
+const val CHARACTER_FILTER_DIALOG_TITLE = "Filter"
+const val CHARACTER_FILTER_MESSAGE = "Specify the desired filtering options"
+const val CHARACTER_FILTER_POSITIVE_BUTTON = "Apply"
+const val CHARACTER_FILTER_NEGATIVE_BUTTON = "Cancel"
+
+const val CHARACTERS_TABLE_NAME = "characters_table"
