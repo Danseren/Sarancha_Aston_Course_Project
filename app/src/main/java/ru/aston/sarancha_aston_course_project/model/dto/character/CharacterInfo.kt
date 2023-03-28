@@ -1,6 +1,8 @@
-package ru.aston.sarancha_aston_course_project.model.dto
+package ru.aston.sarancha_aston_course_project.model.dto.character
 
 import com.google.gson.annotations.SerializedName
+import ru.aston.sarancha_aston_course_project.model.dto.Location
+import ru.aston.sarancha_aston_course_project.model.dto.Origin
 
 data class CharacterInfo(
 //    @SerializedName("created")

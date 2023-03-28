@@ -11,6 +11,7 @@ const val CHARACTER_LIST_FRAGMENT_TAG = "CharacterListFragment"
 const val LOCATIONS_LIST_FRAGMENT_TAG = "LocationsListFragment"
 const val EPISODES_LIST_FRAGMENT_TAG = "EpisodesListFragment"
 const val CHARACTER_INFO_FRAGMENT_TAG = "CharacterInfoFragment"
+const val EPISODE_INFO_FRAGMENT_TAG = "CharacterInfoFragment"
 
 const val PAGE_NUMBER_BUNDLE = "PAGE_NUMBER_BUNDLE"
 
@@ -25,3 +26,4 @@ const val CHARACTER_FILTER_NEGATIVE_BUTTON = "Cancel"
 const val CHARACTERS_TABLE_NAME = "characters_table"
 
 const val CHARACTER_INFO = "character info"
+const val EPISODE_INFO = "episode info"

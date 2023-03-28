@@ -1,4 +1,4 @@
-package ru.aston.sarancha_aston_course_project.view
+package ru.aston.sarancha_aston_course_project.view.character
 
 import android.content.Context
 import android.graphics.Color

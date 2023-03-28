@@ -12,7 +12,7 @@ import ru.aston.sarancha_aston_course_project.R
 import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentCharactersListBinding
 import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
 import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment

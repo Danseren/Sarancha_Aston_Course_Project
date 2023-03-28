@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvEpisode"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="contentDescription"
+        tools:text="Episode" />
+
+    <TextView
+        android:id="@+id/tvAirDate"
+        style="@style/ExtraSmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="contentDescription"
+        tools:text="Air date" />
+
+    <TextView
+        android:id="@+id/tvEpisodeName"
+        style="@style/TitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="contentDescription"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/tvCreated"
+        style="@style/MediumTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="contentDescription"
+        tools:text="Created" />
+
+    <TextView
+        android:id="@+id/tvUrl"
+        style="@style/MediumTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="contentDescription"
+        tools:text="Url" />
+
+</LinearLayout>

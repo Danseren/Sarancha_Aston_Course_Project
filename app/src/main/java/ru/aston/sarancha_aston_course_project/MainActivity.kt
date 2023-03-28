@@ -94,7 +94,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
                         R.id.itemEpisodes -> {
                             startFragment(
-                                EpisodesListFragment.newInstance(),
+                                EpisodesListFragment.newInstance(pageNumber),
                                 EPISODES_LIST_FRAGMENT_TAG
                             )
                             true

@@ -1,45 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvEpisodeName"
-        style="@style/MediumTextStyle"
+    <ru.aston.sarancha_aston_course_project.view.episode.CustomEpisodeView
+        android:id="@+id/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/marginMedium"
-        android:contentDescription="contentDescription"
-        tools:text="Name" />
+        android:layout_marginStart="@dimen/marginMedium"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:layout_marginEnd="@dimen/marginMedium" />
 
-    <TextView
-        android:id="@+id/tvAirDate"
-        style="@style/SmallTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="contentDescription"
-        tools:text="Air date" />
-
-    <TextView
-        android:id="@+id/tvEpisode"
-        style="@style/SmallTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marginMedium"
-        android:contentDescription="contentDescription"
-        tools:text="Episode" />
-
-    <TextView
-        android:id="@+id/tvCharacters"
-        style="@style/SmallTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marginMedium"
-        android:contentDescription="contentDescription"
-        tools:text="Characters" />
-
-</LinearLayout>
+</FrameLayout>

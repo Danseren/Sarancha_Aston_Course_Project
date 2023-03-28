@@ -8,6 +8,10 @@
     <string name="tvGenderTitle">Gender:</string>
     <string name="tvGender">CharacterGender</string>
 
+    <string name="tvEpisodeName">EpisodeName</string>
+    <string name="tvAirDate">AirDate</string>
+    <string name="tvEpisode">Episode number</string>
+
     <string name="itemCharacters">Characters</string>
     <string name="itemLocations">Locations</string>
     <string name="itemEpisodes">Episodes</string>

@@ -3,7 +3,6 @@ package ru.aston.sarancha_aston_course_project.viewmodel
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -15,7 +14,7 @@ import ru.aston.sarancha_aston_course_project.App
 import ru.aston.sarancha_aston_course_project.domain.CharacterFilterData
 import ru.aston.sarancha_aston_course_project.database.CharacterDataSource
 import ru.aston.sarancha_aston_course_project.database.CharactersDataBaseRepo
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 import ru.aston.sarancha_aston_course_project.utils.Mapper
 
@@ -24,7 +23,7 @@ class CharacterListViewModel() : ViewModel() {
     private var disposable: Disposable = Disposable.empty()
 
     private val controller = RepositoryRetrofitImpl()
-    val characterResult = controller.characterResult
+    val characterResult = controller.result
 
     private val scope = CoroutineScope((Dispatchers.IO))
 

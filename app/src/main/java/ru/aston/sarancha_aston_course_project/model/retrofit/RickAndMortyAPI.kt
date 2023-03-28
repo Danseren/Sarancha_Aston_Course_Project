@@ -4,9 +4,8 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
-import retrofit2.http.QueryMap
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
+import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
+import ru.aston.sarancha_aston_course_project.model.dto.episode.EpisodeDto
 
 interface RickAndMortyAPI {
 
@@ -22,4 +21,8 @@ interface RickAndMortyAPI {
         @Query("status") status: String,
         @Query("gender") gender: String
     ): Single<CharacterDto>
+
+    @Headers("Content-type: application/json")
+    @GET("episode")
+    fun getEpisodeList(@Query("page") pageNumber: Int): Single<EpisodeDto>
 }

@@ -1,7 +1,7 @@
 package ru.aston.sarancha_aston_course_project.utils
 
 import ru.aston.sarancha_aston_course_project.database.CharactersEntity
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterDto
+import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
 
 class Mapper {
 

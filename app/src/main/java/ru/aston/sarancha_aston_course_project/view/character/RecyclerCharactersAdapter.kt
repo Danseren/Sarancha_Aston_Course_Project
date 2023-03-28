@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.aston.sarancha_aston_course_project.databinding.RecyclerCharactersBinding
-import ru.aston.sarancha_aston_course_project.model.dto.CharacterInfo
+import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterInfo
 import ru.aston.sarancha_aston_course_project.utils.STATUS_ALIVE
 import ru.aston.sarancha_aston_course_project.utils.STATUS_DEAD
 import ru.aston.sarancha_aston_course_project.view.BaseViewHolder

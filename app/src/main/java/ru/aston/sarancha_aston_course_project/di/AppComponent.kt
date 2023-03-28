@@ -3,6 +3,7 @@ package ru.aston.sarancha_aston_course_project.di
 import dagger.Component
 import ru.aston.sarancha_aston_course_project.MainActivity
 import ru.aston.sarancha_aston_course_project.view.character.CharacterListFragment
+import ru.aston.sarancha_aston_course_project.view.episode.EpisodesListFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -16,4 +17,5 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(characterListFragment: CharacterListFragment)
+    fun inject(episodesListFragment: EpisodesListFragment)
 }

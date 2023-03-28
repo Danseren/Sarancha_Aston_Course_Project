@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ru.aston.sarancha_aston_course_project.view.CustomCharacterView
+    <ru.aston.sarancha_aston_course_project.view.character.CustomCharacterView
         android:id="@+id/custom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

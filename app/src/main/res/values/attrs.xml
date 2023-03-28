@@ -10,4 +10,10 @@
         <attr name="characterGender" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CustomEpisodeView">
+        <attr name="episodeName" format="string" />
+        <attr name="episodeAirDate" format="string" />
+        <attr name="episodeNumber" format="string" />
+    </declare-styleable>
+
 </resources>
