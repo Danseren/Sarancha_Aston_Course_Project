@@ -9,11 +9,11 @@
         android:id="@+id/checkboxFilter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/marginLarge"
         android:background="@drawable/btn_shape_circle"
         android:button="@drawable/ic_filter_48"
         android:minWidth="@dimen/checkboxRadius"
         android:minHeight="@dimen/checkboxRadius"
-        android:layout_marginEnd="@dimen/marginLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -29,7 +29,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/marginMedium"
-                android:contentDescription="contentDescription"
+                android:contentDescription="@string/contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
                 tools:text="Episode" />
 
             <TextView
@@ -38,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="contentDescription"
+                android:contentDescription="@string/contentDescription"
                 tools:text="Air date" />
 
             <TextView
@@ -47,7 +49,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/marginMedium"
-                android:contentDescription="contentDescription"
+                android:contentDescription="@string/contentDescription"
+                android:ellipsize="end"
+                android:lines="1"
                 tools:text="Name" />
 
         </LinearLayout>

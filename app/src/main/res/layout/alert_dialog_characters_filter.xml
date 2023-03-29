@@ -91,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/marginMedium"
+            android:contentDescription="@string/contentDescription"
             android:src="@drawable/ic_arrow_40" />
 
     </FrameLayout>
@@ -122,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:layout_marginEnd="@dimen/marginMedium"
+            android:contentDescription="@string/contentDescription"
             android:src="@drawable/ic_arrow_40" />
 
     </FrameLayout>
