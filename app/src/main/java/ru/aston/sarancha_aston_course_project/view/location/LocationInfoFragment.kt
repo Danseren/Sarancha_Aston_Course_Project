@@ -12,6 +12,7 @@ import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentLocationInfoBinding
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitLocationImpl
 import ru.aston.sarancha_aston_course_project.utils.LOCATION_INFO
+import ru.aston.sarancha_aston_course_project.utils.makeGone
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import kotlin.properties.Delegates
 
@@ -69,6 +70,7 @@ class LocationInfoFragment : BaseFragment<FragmentLocationInfoBinding>(), HasCus
                         tvLocationName.text = it.results[locationId].name
                         tvCreated.text = it.results[locationId].created
                         tvUrl.text = it.results[locationId].url
+                        progressCircular.makeGone()
                     }
                 },
                 {

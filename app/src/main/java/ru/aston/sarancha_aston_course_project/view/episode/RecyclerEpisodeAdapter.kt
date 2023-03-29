@@ -23,7 +23,6 @@ class RecyclerEpisodeAdapter(private val listData: List<EpisodeInfo>) :
         return EpisodesViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: EpisodesViewHolder, position: Int) {
         holder.bind(listData[position])
         when (holder) {

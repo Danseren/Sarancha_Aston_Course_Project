@@ -13,6 +13,7 @@ import ru.aston.sarancha_aston_course_project.databinding.FragmentCharacterInfoB
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitImpl
 import ru.aston.sarancha_aston_course_project.utils.CHARACTER_INFO
 import ru.aston.sarancha_aston_course_project.utils.loadImageFromUrl
+import ru.aston.sarancha_aston_course_project.utils.makeGone
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import kotlin.properties.Delegates
 
@@ -32,7 +33,6 @@ class CharacterInfoFragment : BaseFragment<FragmentCharacterInfoBinding>(), HasC
 
     private var disposable: Disposable = Disposable.empty()
     private val controller = RepositoryRetrofitImpl()
-//    val characterResult = controller.characterResult
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +74,7 @@ class CharacterInfoFragment : BaseFragment<FragmentCharacterInfoBinding>(), HasC
                         tvGender.text = it.results[characterId].gender
                         tvOrigin.text = it.results[characterId].origin.name
                         tvLocation.text = it.results[characterId].location.name
+                        progressCircular.makeGone()
                     }
                 },
                 {

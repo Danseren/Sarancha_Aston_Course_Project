@@ -5,8 +5,6 @@ import ru.aston.sarancha_aston_course_project.model.dto.Location
 import ru.aston.sarancha_aston_course_project.model.dto.Origin
 
 data class CharacterInfo(
-//    @SerializedName("created")
-//    val created: String,
     @SerializedName("episode")
     val episode: List<String>,
     @SerializedName("gender")

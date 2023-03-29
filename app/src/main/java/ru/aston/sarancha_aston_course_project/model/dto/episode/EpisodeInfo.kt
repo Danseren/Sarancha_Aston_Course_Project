@@ -1,6 +1,5 @@
 package ru.aston.sarancha_aston_course_project.model.dto.episode
 
-
 import com.google.gson.annotations.SerializedName
 
 data class EpisodeInfo(

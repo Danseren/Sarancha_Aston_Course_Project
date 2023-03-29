@@ -50,40 +50,48 @@ class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCus
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[EpisodeListViewModel::class.java]
+        init()
+    }
 
-        val bundle = Bundle()
-        arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+    private fun init() {
 
-        viewModel.episodeResult.observe(viewLifecycleOwner) {
-            it.let {
-                val result: EpisodeDto = it
-                val list = result.results
-                binding.recyclerEpisodesContainer.adapter =
-                    RecyclerEpisodeAdapter(list).apply {
+        with(binding) {
 
-                        clickAction = {
-                            router.replaceFragmentWithBackstack(
-                                requireActivity().supportFragmentManager,
-                                R.id.container,
-                                EpisodeInfoFragment.newInstance(itemPos),
-                                EPISODE_INFO_FRAGMENT_TAG
-                            )
+            viewModel = ViewModelProvider(requireActivity())[EpisodeListViewModel::class.java]
+
+            val bundle = Bundle()
+            arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+
+            viewModel.episodeResult.observe(viewLifecycleOwner) {
+                it.let {
+                    val result: EpisodeDto = it
+                    val list = result.results
+                    recyclerEpisodesContainer.adapter =
+                        RecyclerEpisodeAdapter(list).apply {
+
+                            clickAction = {
+                                router.replaceFragmentWithBackstack(
+                                    requireActivity().supportFragmentManager,
+                                    R.id.container,
+                                    EpisodeInfoFragment.newInstance(itemPos),
+                                    EPISODE_INFO_FRAGMENT_TAG
+                                )
+                            }
                         }
-                    }
-                binding.progressCircular.makeGone()
+                    progressCircular.makeGone()
+                }
             }
-        }
 
-        binding.checkboxFilter.isChecked = false
-        materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
+            checkboxFilter.isChecked = false
+            materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
 
-        binding.checkboxFilter.setOnClickListener {
-            alertDialogView =
-                LayoutInflater
-                    .from(requireActivity())
-                    .inflate(R.layout.alert_dialog_episodes_filter, null)
-            launchCustomAlertDialog()
+            checkboxFilter.setOnClickListener {
+                alertDialogView =
+                    LayoutInflater
+                        .from(requireActivity())
+                        .inflate(R.layout.alert_dialog_episodes_filter, null)
+                launchCustomAlertDialog()
+            }
         }
     }
 

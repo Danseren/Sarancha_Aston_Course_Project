@@ -32,6 +32,7 @@ class RecyclerCharactersAdapter(private val listData: List<CharacterInfo>) :
         when (holder) {
             is CharactersViewHolder -> {
                 with(holder.binding) {
+
                     custom.apply {
                         setCharacterName(listData[position].name)
                         setCharacterStatus(listData[position].status)

@@ -50,40 +50,49 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[CharacterListViewModel::class.java]
+        init()
+    }
 
-        val bundle = Bundle()
-        arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+    private fun init() {
 
-        viewModel.characterResult.observe(viewLifecycleOwner) {
-            it.let {
-                val result: CharacterDto = it
-                val list = result.results
-                binding.recyclerCharactersContainer.adapter =
-                    RecyclerCharactersAdapter(list).apply {
+        with(binding) {
 
-                        clickAction = {
-                            router.replaceFragmentWithBackstack(
-                                requireActivity().supportFragmentManager,
-                                R.id.container,
-                                CharacterInfoFragment.newInstance(itemPos),
-                                CHARACTER_INFO_FRAGMENT_TAG
-                            )
+            viewModel = ViewModelProvider(requireActivity())[CharacterListViewModel::class.java]
+
+            val bundle = Bundle()
+            arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+
+            viewModel.characterResult.observe(viewLifecycleOwner) {
+                it.let {
+                    val result: CharacterDto = it
+                    val list = result.results
+                    recyclerCharactersContainer.adapter =
+                        RecyclerCharactersAdapter(list).apply {
+
+                            clickAction = {
+                                router.replaceFragmentWithBackstack(
+                                    requireActivity().supportFragmentManager,
+                                    R.id.container,
+                                    CharacterInfoFragment.newInstance(itemPos),
+                                    CHARACTER_INFO_FRAGMENT_TAG
+                                )
+                            }
                         }
-                    }
-                binding.progressCircular.makeGone()
+                    progressCircular.makeGone()
+                }
             }
-        }
 
-        binding.checkboxFilter.isChecked = false
-        materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
+            checkboxFilter.isChecked = false
+            materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
 
-        binding.checkboxFilter.setOnClickListener {
-            alertDialogView =
-                LayoutInflater
-                    .from(requireActivity())
-                    .inflate(R.layout.alert_dialog_characters_filter, null)
-            launchCustomAlertDialog()
+            checkboxFilter.setOnClickListener {
+                alertDialogView =
+                    LayoutInflater
+                        .from(requireActivity())
+                        .inflate(R.layout.alert_dialog_characters_filter, null)
+
+                launchCustomAlertDialog()
+            }
         }
     }
 
@@ -118,7 +127,6 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
                 dialog.dismiss()
             }
             .show()
-
     }
 
     override fun getTitleRes(): Int = R.string.titleCharacters

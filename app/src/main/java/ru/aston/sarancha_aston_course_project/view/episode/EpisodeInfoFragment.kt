@@ -12,6 +12,7 @@ import ru.aston.sarancha_aston_course_project.contract.HasCustomTitle
 import ru.aston.sarancha_aston_course_project.databinding.FragmentEpisodeInfoBinding
 import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeImpl
 import ru.aston.sarancha_aston_course_project.utils.EPISODE_INFO
+import ru.aston.sarancha_aston_course_project.utils.makeGone
 import ru.aston.sarancha_aston_course_project.view.base.BaseFragment
 import kotlin.properties.Delegates
 
@@ -69,6 +70,7 @@ class EpisodeInfoFragment : BaseFragment<FragmentEpisodeInfoBinding>(), HasCusto
                         tvAirDate.text = it.results[episodeId].airDate
                         tvCreated.text = it.results[episodeId].created
                         tvUrl.text = it.results[episodeId].url
+                        progressCircular.makeGone()
                     }
                 },
                 {

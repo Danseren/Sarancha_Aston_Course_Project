@@ -9,9 +9,7 @@ import androidx.room.RoomDatabase
     ], version = 1
 )
 
-abstract class CharactersDataBase: RoomDatabase() {
+abstract class CharactersDataBase : RoomDatabase() {
 
-    abstract fun getCharactersListDao() : CharactersDao
-
-    
+    abstract fun getCharactersListDao(): CharactersDao
 }

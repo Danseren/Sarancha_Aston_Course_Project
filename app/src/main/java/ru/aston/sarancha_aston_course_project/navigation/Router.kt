@@ -86,6 +86,5 @@ class Router : IRouter {
             fragmentManager.beginTransaction()
                 .remove(it)
         }
-
     }
 }

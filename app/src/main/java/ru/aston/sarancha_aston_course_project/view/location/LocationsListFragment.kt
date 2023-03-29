@@ -51,40 +51,48 @@ class LocationsListFragment : BaseFragment<FragmentLocationsListBinding>(), HasC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[LocationListViewModel::class.java]
+        init()
+    }
 
-        val bundle = Bundle()
-        arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+    private fun init() {
 
-        viewModel.locationResult.observe(viewLifecycleOwner) {
-            it.let {
-                val result: LocationDto = it
-                val list = result.results
-                binding.recyclerLocationsContainer.adapter =
-                    RecyclerLocationAdapter(list).apply {
+        with(binding) {
 
-                        clickAction = {
-                            router.replaceFragmentWithBackstack(
-                                requireActivity().supportFragmentManager,
-                                R.id.container,
-                                LocationInfoFragment.newInstance(itemPos),
-                                LOCATIONS_LIST_FRAGMENT_TAG
-                            )
+            viewModel = ViewModelProvider(requireActivity())[LocationListViewModel::class.java]
+
+            val bundle = Bundle()
+            arguments?.getInt(PAGE_NUMBER_BUNDLE)?.let { viewModel.getResult(it) }
+
+            viewModel.locationResult.observe(viewLifecycleOwner) {
+                it.let {
+                    val result: LocationDto = it
+                    val list = result.results
+                    recyclerLocationsContainer.adapter =
+                        RecyclerLocationAdapter(list).apply {
+
+                            clickAction = {
+                                router.replaceFragmentWithBackstack(
+                                    requireActivity().supportFragmentManager,
+                                    R.id.container,
+                                    LocationInfoFragment.newInstance(itemPos),
+                                    LOCATIONS_LIST_FRAGMENT_TAG
+                                )
+                            }
                         }
-                    }
-                binding.progressCircular.makeGone()
+                    progressCircular.makeGone()
+                }
             }
-        }
 
-        binding.checkboxFilter.isChecked = false
-        materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
+            checkboxFilter.isChecked = false
+            materialAlertDialogBuilder = MaterialAlertDialogBuilder(requireActivity())
 
-        binding.checkboxFilter.setOnClickListener {
-            alertDialogView =
-                LayoutInflater
-                    .from(requireActivity())
-                    .inflate(R.layout.alert_dialog_location_filter, null)
-            launchCustomAlertDialog()
+            checkboxFilter.setOnClickListener {
+                alertDialogView =
+                    LayoutInflater
+                        .from(requireActivity())
+                        .inflate(R.layout.alert_dialog_location_filter, null)
+                launchCustomAlertDialog()
+            }
         }
     }
 

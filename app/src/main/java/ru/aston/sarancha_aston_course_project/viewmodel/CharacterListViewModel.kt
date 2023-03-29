@@ -54,7 +54,7 @@ class CharacterListViewModel() : ViewModel() {
             )
     }
 
-    fun saveToDatabase(characterDto: CharacterDto) {
+    private fun saveToDatabase(characterDto: CharacterDto) {
 
         val mapper = Mapper()
 

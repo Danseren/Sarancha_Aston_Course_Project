@@ -38,7 +38,12 @@ class CustomCharacterView(
     private fun initializeAttributes(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
         if (attrs == null) return
         val typedArray =
-            context.obtainStyledAttributes(attrs, R.styleable.CustomCharacterView, defStyleAttr, defStyleRes)
+            context.obtainStyledAttributes(
+                attrs,
+                R.styleable.CustomCharacterView,
+                defStyleAttr,
+                defStyleRes
+            )
 
         val imageSrc = typedArray.getString(R.styleable.CustomCharacterView_imageSrc)
         if (imageSrc != null) {
@@ -51,10 +56,12 @@ class CustomCharacterView(
         val characterStatus = typedArray.getString(R.styleable.CustomCharacterView_characterStatus)
         setCharacterStatus(characterStatus)
 
-        val characterStatusColor = typedArray.getColor(R.styleable.CustomCharacterView_characterStatusColor, Color.GRAY)
+        val characterStatusColor =
+            typedArray.getColor(R.styleable.CustomCharacterView_characterStatusColor, Color.GRAY)
         setCharacterStatusColor(characterStatusColor)
 
-        val characterSpecies = typedArray.getString(R.styleable.CustomCharacterView_characterSpecies)
+        val characterSpecies =
+            typedArray.getString(R.styleable.CustomCharacterView_characterSpecies)
         setCharacterSpecies(characterSpecies)
 
         val characterGender = typedArray.getString(R.styleable.CustomCharacterView_characterGender)
