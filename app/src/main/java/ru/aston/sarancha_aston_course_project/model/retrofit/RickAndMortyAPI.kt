@@ -6,6 +6,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 import ru.aston.sarancha_aston_course_project.model.dto.character.CharacterDto
 import ru.aston.sarancha_aston_course_project.model.dto.episode.EpisodeDto
+import ru.aston.sarancha_aston_course_project.model.dto.location.LocationDto
 
 interface RickAndMortyAPI {
 
@@ -31,4 +32,15 @@ interface RickAndMortyAPI {
         @Query("name") name: String,
         @Query("episode") episode: String
     ): Single<EpisodeDto>
+
+    @Headers("Content-type: application/json")
+    @GET("location")
+    fun getLocationList(@Query("page") pageNumber: Int): Single<LocationDto>
+
+    @GET("location")
+    fun getFilteredLocationList(
+        @Query("name") name: String,
+        @Query("type") type: String,
+        @Query("dimension") dimension: String
+    ): Single<LocationDto>
 }

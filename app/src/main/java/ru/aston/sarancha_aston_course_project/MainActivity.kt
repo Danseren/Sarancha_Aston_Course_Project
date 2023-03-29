@@ -57,6 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentListener, false)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initViews() {
         with(binding) {
 
@@ -85,7 +86,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
                         R.id.itemLocations -> {
                             startFragment(
-                                LocationsListFragment.newInstance(),
+                                LocationsListFragment.newInstance(pageNumber),
                                 LOCATIONS_LIST_FRAGMENT_TAG
                             )
                             true

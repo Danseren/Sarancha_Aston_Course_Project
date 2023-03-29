@@ -20,6 +20,7 @@ const val LAST_PAGE = 42
 
 const val CHARACTER_FILTER_DIALOG_TITLE = "Character filter"
 const val EPISODE_FILTER_DIALOG_TITLE = "Episode filter"
+const val LOCATION_FILTER_DIALOG_TITLE = "Location filter"
 const val FILTER_MESSAGE = "Specify the desired filtering options"
 const val FILTER_POSITIVE_BUTTON = "Apply"
 const val FILTER_NEGATIVE_BUTTON = "Cancel"
@@ -28,3 +29,4 @@ const val CHARACTERS_TABLE_NAME = "characters_table"
 
 const val CHARACTER_INFO = "character info"
 const val EPISODE_INFO = "episode info"
+const val LOCATION_INFO = "location info"

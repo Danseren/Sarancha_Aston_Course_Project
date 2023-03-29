@@ -3,27 +3,27 @@ package ru.aston.sarancha_aston_course_project.viewmodel
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
-import ru.aston.sarancha_aston_course_project.domain.EpisodeFilterData
-import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeFilterImpl
-import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitEpisodeImpl
+import ru.aston.sarancha_aston_course_project.domain.LocationFilterData
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitLocationFilterImpl
+import ru.aston.sarancha_aston_course_project.model.retrofit.RepositoryRetrofitLocationImpl
 
-class EpisodeListViewModel() : ViewModel() {
+class LocationListViewModel() : ViewModel() {
 
     private var disposable: Disposable = Disposable.empty()
 
-    private val controller = RepositoryRetrofitEpisodeImpl()
-    val episodeResult = controller.episodeResult
+    private val controller = RepositoryRetrofitLocationImpl()
+    val locationResult = controller.episodeResult
 
-    private val episodeFilterController = RepositoryRetrofitEpisodeFilterImpl()
+    private val locationFilterController = RepositoryRetrofitLocationFilterImpl()
 
     fun getResult(pageNumber: Int) {
 
         disposable = controller
-            .getEpisodeData(pageNumber)
+            .getLocationData(pageNumber)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    episodeResult.postValue(it)
+                    locationResult.postValue(it)
                 },
                 {
 
@@ -31,13 +31,13 @@ class EpisodeListViewModel() : ViewModel() {
             )
     }
 
-    fun getFilterResult(episodeFilter: EpisodeFilterData) {
-        disposable = episodeFilterController
+    fun getFilterResult(episodeFilter: LocationFilterData) {
+        disposable = locationFilterController
             .getFilteredData(episodeFilter)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    episodeResult.postValue(it)
+                    locationResult.postValue(it)
                 },
                 {
 

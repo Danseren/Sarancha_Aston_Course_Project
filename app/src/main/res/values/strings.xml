@@ -21,8 +21,10 @@
     <string name="titleEpisodes">Episodes</string>
     <string name="textInputLayoutTypeHint">type</string>
     <string name="textInputLayoutSpeciesHint">species</string>
+    <string name="textInputLayoutDimensionHint">dimension</string>
     <string name="textInputLayoutNameHint">name</string>
     <string name="textInputLayoutEpisodeHint">episode</string>
+    <string name="contentDescription">contentDescription</string>
 
     <string-array name="spinnerStatusList">
         <item>alive</item>

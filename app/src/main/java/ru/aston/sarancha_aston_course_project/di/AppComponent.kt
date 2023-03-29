@@ -6,6 +6,7 @@ import dagger.Component
 import ru.aston.sarancha_aston_course_project.MainActivity
 import ru.aston.sarancha_aston_course_project.view.character.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.episode.EpisodesListFragment
+import ru.aston.sarancha_aston_course_project.view.location.LocationsListFragment
 import ru.aston.sarancha_aston_course_project.viewmodel.CharacterListViewModel
 import javax.inject.Singleton
 
@@ -28,6 +29,7 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
     fun inject(characterListFragment: CharacterListFragment)
     fun inject(episodesListFragment: EpisodesListFragment)
+    fun inject(locationsListFragment: LocationsListFragment)
     fun inject(characterListViewModel: CharacterListViewModel)
 
     @Component.Factory
