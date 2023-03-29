@@ -72,6 +72,7 @@ class LocationsListFragment : BaseFragment<FragmentLocationsListBinding>(), HasC
                             )
                         }
                     }
+                binding.progressCircular.makeGone()
             }
         }
 

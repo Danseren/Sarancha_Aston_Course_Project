@@ -71,6 +71,7 @@ class CharacterListFragment : BaseFragment<FragmentCharactersListBinding>(), Has
                             )
                         }
                     }
+                binding.progressCircular.makeGone()
             }
         }
 

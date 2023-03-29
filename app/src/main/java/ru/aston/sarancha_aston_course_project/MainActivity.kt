@@ -12,6 +12,7 @@ import ru.aston.sarancha_aston_course_project.di.AppComponent
 import ru.aston.sarancha_aston_course_project.navigation.IRouter
 import ru.aston.sarancha_aston_course_project.utils.*
 import ru.aston.sarancha_aston_course_project.view.base.BaseActivity
+import ru.aston.sarancha_aston_course_project.view.character.CharacterInfoFragment
 import ru.aston.sarancha_aston_course_project.view.character.CharacterListFragment
 import ru.aston.sarancha_aston_course_project.view.episode.EpisodesListFragment
 import ru.aston.sarancha_aston_course_project.view.location.LocationsListFragment
@@ -110,6 +111,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI() {
         val fragment = currentFragment
 
@@ -118,6 +120,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 toolbar.title = getString(fragment.getTitleRes())
             } else {
                 toolbar.title = getString(R.string.titleCharacters)
+            }
+
+            when (fragment) {
+                is CharacterListFragment -> {
+                    btnPrevious.makeVisible()
+                    btnNext.makeVisible()
+                }
+                is CharacterInfoFragment -> {
+                    btnPrevious.makeGone()
+                    btnNext.makeGone()
+                }
+                else -> {
+                    btnPrevious.makeGone()
+                    btnNext.makeGone()
+                    pageNumber = 1
+                    btnNext.text = (START_PAGE + 1).toString()
+                    btnPrevious.text = LAST_PAGE.toString()
+                }
             }
 
             if (supportFragmentManager.backStackEntryCount > 0) {

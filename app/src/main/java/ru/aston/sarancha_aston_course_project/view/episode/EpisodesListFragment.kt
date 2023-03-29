@@ -71,6 +71,7 @@ class EpisodesListFragment : BaseFragment<FragmentEpisodesListBinding>(), HasCus
                             )
                         }
                     }
+                binding.progressCircular.makeGone()
             }
         }
 
