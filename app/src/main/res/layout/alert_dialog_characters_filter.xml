@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutName"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:hint="@string/textInputLayoutNameHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSpecies"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:hint="@string/textInputLayoutSpeciesHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSpecies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutType"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMedium"
+        android:hint="@string/textInputLayoutTypeHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSpecies"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <FrameLayout
+        android:id="@+id/spinnerLayoutStatus"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spinnerLayoutHeight"
+        android:layout_margin="@dimen/marginMedium"
+        android:background="@drawable/spinner_background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutType">
+
+        <Spinner
+            android:id="@+id/spinnerStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:entries="@array/spinnerStatusList"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/marginMedium"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/ic_arrow_40" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/spinnerLayoutGender"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spinnerLayoutHeight"
+        android:layout_margin="@dimen/marginMedium"
+        android:layout_marginBottom="@dimen/marginLarge"
+        android:background="@drawable/spinner_background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLayoutStatus">
+
+        <Spinner
+            android:id="@+id/spinnerGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:entries="@array/spinnerGenderList"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="@dimen/marginMedium"
+            android:contentDescription="@string/contentDescription"
+            android:src="@drawable/ic_arrow_40" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

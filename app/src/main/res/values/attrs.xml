@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomCharacterView">
+        <attr name="imageSrc" format="string" />
+        <attr name="characterName" format="string" />
+        <attr name="characterStatus" format="string" />
+        <attr name="characterStatusColor" format="color" />
+        <attr name="characterSpecies" format="string" />
+        <attr name="characterGender" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomEpisodeView">
+        <attr name="episodeName" format="string" />
+        <attr name="episodeAirDate" format="string" />
+        <attr name="episodeNumber" format="string" />
+    </declare-styleable>
+
+</resources>

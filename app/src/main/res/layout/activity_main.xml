@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/rick_and_morty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIconTint="@color/white"
+        app:title="@string/itemCharacters"
+        app:titleTextColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnPrevious"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="@dimen/btnPaginationWidth"
+        android:layout_height="0dp"
+        android:textSize="@dimen/textSizeExtraSmall"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/btnNext"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="@dimen/btnPaginationWidth"
+        android:layout_height="0dp"
+        android:textSize="@dimen/textSizeExtraSmall"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext"
+        app:layout_constraintStart_toEndOf="@+id/btnPrevious"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:layout="@layout/fragment_characters_list" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:itemIconTint="@color/black"
+        app:itemRippleColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

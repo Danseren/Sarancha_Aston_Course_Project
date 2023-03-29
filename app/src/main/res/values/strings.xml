@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">Sarancha_Aston_Course_Project</string>
+
+    <string name="tvCharacterName">CharacterName</string>
+    <string name="tvCharacterStatus">CharacterStatus</string>
+    <string name="tvSpeciesTitle">Species:</string>
+    <string name="tvSpecies">CharacterSpecies</string>
+    <string name="tvGenderTitle">Gender:</string>
+    <string name="tvGender">CharacterGender</string>
+
+    <string name="tvEpisodeName">EpisodeName</string>
+    <string name="tvAirDate">AirDate</string>
+    <string name="tvEpisode">Episode number</string>
+
+    <string name="itemCharacters">Characters</string>
+    <string name="itemLocations">Locations</string>
+    <string name="itemEpisodes">Episodes</string>
+
+    <string name="titleCharacters">Characters</string>
+    <string name="titleLocations">Locations</string>
+    <string name="titleEpisodes">Episodes</string>
+    <string name="textInputLayoutTypeHint">type</string>
+    <string name="textInputLayoutSpeciesHint">species</string>
+    <string name="textInputLayoutDimensionHint">dimension</string>
+    <string name="textInputLayoutNameHint">name</string>
+    <string name="textInputLayoutEpisodeHint">episode</string>
+    <string name="contentDescription">contentDescription</string>
+
+    <string-array name="spinnerStatusList">
+        <item>alive</item>
+        <item>dead</item>
+        <item>unknown</item>
+    </string-array>
+
+    <string-array name="spinnerGenderList">
+        <item>female</item>
+        <item>male</item>
+        <item>genderless</item>
+        <item>unknown</item>
+    </string-array>
 </resources>

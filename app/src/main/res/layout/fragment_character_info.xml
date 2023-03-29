@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        android:src="@drawable/ic_anonymous_128" />
+
+    <TextView
+        android:id="@+id/tvCharacterName"
+        style="@style/MediumTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/tvCharacterStatus"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Status" />
+
+    <TextView
+        android:id="@+id/tvSpecies"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Species" />
+
+    <TextView
+        android:id="@+id/tvType"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Type" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Gender" />
+
+    <TextView
+        android:id="@+id/tvOrigin"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Origin" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginMedium"
+        android:contentDescription="@string/contentDescription"
+        tools:text="Location" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+</LinearLayout>
